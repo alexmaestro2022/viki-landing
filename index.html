@@ -10,88 +10,142 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0d1324;        /* глубокий тёмно-синий фон */
-      --brand:#3A4866;     /* заявленный глубокий синий */
-      --ink:#E6E9EF;       /* текст на тёмном */
-      --muted:#A9B3C6;     /* вторичный текст */
-      --teal:#2dd4bf;      /* бирюзовый акцент */
-      --violet:#a78bfa;    /* фиолетовый акцент */
-      --card:#121a33;      /* карточки */
-      --card2:#0f172a;     /* чередование */
-      --stroke:#28304a;    /* тонкие линии */
-      --cta:#27a7e7;       /* телеграм‑акцент */
-      --success:#22c55e;
-      --warning:#f59e0b;
-      --danger:#ef4444;
-      --radius:18px;
+      --bg:#0d1324; --brand:#3A4866; --ink:#E6E9EF; --muted:#A9B3C6;
+      --teal:#2dd4bf; --violet:#a78bfa; --card:#121a33; --card2:#0f172a;
+      --stroke:#28304a; --cta:#27a7e7; --radius:18px;
       --shadow:0 10px 30px rgba(0,0,0,.28), 0 1px 0 rgba(255,255,255,.02) inset;
       --grad:linear-gradient(135deg,var(--teal),var(--violet));
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(1200px 800px at 10% -10%, #1d2546 0, transparent 50%), radial-gradient(1000px 700px at 110% -20%, #1a2b52 0, transparent 50%), var(--bg);color:var(--ink);}
+    body{
+      margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      background:radial-gradient(1200px 800px at 10% -10%, #1d2546 0, transparent 50%),
+                 radial-gradient(1000px 700px at 110% -20%, #1a2b52 0, transparent 50%),
+                 var(--bg);color:var(--ink);
+    }
     a{color:inherit;text-decoration:none}
     .container{width:100%;max-width:1160px;margin:0 auto;padding:0 20px}
-    .btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--grad);color:#0b1020;padding:.9rem 1.2rem;border-radius:12px;font-weight:700;box-shadow:0 10px 30px rgba(98,115,255,.25);transition:transform .15s ease, box-shadow .2s ease}
+
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--grad);color:#0b1020;
+      padding:.9rem 1.1rem;border-radius:12px;font-weight:700;box-shadow:0 10px 30px rgba(98,115,255,.25);
+      transition:transform .15s ease, box-shadow .2s ease; white-space:nowrap;}
     .btn:hover{transform:translateY(-1px);box-shadow:0 18px 40px rgba(98,115,255,.28)}
     .btn.secondary{background:transparent;border:1px solid var(--stroke);color:var(--ink);box-shadow:none}
-    .pill{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .6rem;border:1px solid var(--stroke);border-radius:999px;font-size:.82rem;color:var(--muted);}
-    header{position:sticky;top:0;z-index:50;background:rgba(13,19,36,.6);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
-    .nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+
+    .pill{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .6rem;border:1px solid var(--stroke);
+      border-radius:999px;font-size:.82rem;color:var(--muted);}
+
+    /* Header / nav */
+    header{position:sticky;top:0;z-index:50;background:rgba(13,19,36,.6);backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
     .brand{display:flex;align-items:center;gap:.7rem;font-weight:800;letter-spacing:.3px}
-    .brand i{width:34px;height:34px;border-radius:10px;background:var(--grad);display:inline-block;box-shadow:0 10px 24px rgba(45,212,191,.25)}
+    .brand i{width:34px;height:34px;border-radius:10px;background:var(--grad);display:inline-block;
+      box-shadow:0 10px 24px rgba(45,212,191,.25)}
     .nav a{color:var(--muted);margin:0 12px;font-weight:600}
     .nav a:hover{color:var(--ink)}
+    .nav-right{display:flex;align-items:center;gap:10px}
+
+    /* Language switch */
+    .lang-switch{display:flex;gap:6px;border:1px solid var(--stroke);border-radius:999px;padding:4px;background:rgba(255,255,255,.03)}
+    .lang-switch button{border:0;background:transparent;color:var(--muted);padding:6px 10px;border-radius:999px;font-weight:700;cursor:pointer}
+    .lang-switch button.active{background:var(--grad);color:#08101f}
+
+    /* Mobile menu */
+    .menu-toggle{display:none;background:transparent;border:1px solid var(--stroke);border-radius:12px;padding:8px 10px}
+    .menu{display:flex;align-items:center}
+    @media (max-width:860px){
+      .menu{display:none;flex-direction:column;gap:10px;position:absolute;left:0;right:0;top:60px;padding:14px 20px;
+            background:rgba(13,19,36,.9);border-bottom:1px solid rgba(255,255,255,.08)}
+      .menu.open{display:flex}
+      .menu-toggle{display:inline-flex}
+      .nav a{margin:0}
+    }
+
+    /* Hero */
     .hero{padding:72px 0 48px;position:relative;overflow:hidden}
-    .halo{position:absolute;inset: -40% -20% auto -20%;height:80vh;background:radial-gradient(closest-side, rgba(45,212,191,.18), transparent), radial-gradient(closest-side, rgba(167,139,250,.18), transparent);filter:blur(40px);opacity:.6;pointer-events:none}
-    .hero h1{font-size: clamp(28px, 5vw, 54px);line-height:1.05;margin:0 0 16px;font-weight:900}
+    .halo{position:absolute;inset: -40% -20% auto -20%;height:80vh;
+      background:radial-gradient(closest-side, rgba(45,212,191,.18), transparent),
+                 radial-gradient(closest-side, rgba(167,139,250,.18), transparent);
+      filter:blur(40px);opacity:.6;pointer-events:none}
+    .hero h1{font-size: clamp(28px, 7vw, 54px);line-height:1.06;margin:0 0 16px;font-weight:900}
     .hero p{font-size: clamp(16px, 2.3vw, 20px);color:var(--muted);max-width:820px}
     .hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-    .badges{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:28px}
-    .badge{display:flex;gap:.8rem;align-items:flex-start;padding:14px 14px;border:1px solid var(--stroke);border-radius:14px;background:linear-gradient( to bottom right, rgba(255,255,255,.03), rgba(255,255,255,.0));}
+    .badges{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+    @media (max-width:900px){.badges{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:560px){.hero{padding:56px 0 36px}.badges{grid-template-columns:1fr}}
+
+    .badge{display:flex;gap:.8rem;align-items:flex-start;padding:14px;border:1px solid var(--stroke);
+      border-radius:14px;background:linear-gradient( to bottom right, rgba(255,255,255,.03), rgba(255,255,255,.0));}
     .badge i{font-size:22px;line-height:1.2}
+
+    /* Sections / cards */
     section{padding:72px 0;border-top:1px solid rgba(255,255,255,.06)}
-    h2{font-size: clamp(24px, 3vw, 36px);margin:0 0 16px;font-weight:900}
+    h2{font-size: clamp(22px, 3.3vw, 36px);margin:0 0 16px;font-weight:900}
     .lead{color:var(--muted);max-width:860px}
     .grid{display:grid;gap:20px}
     .cards-3{grid-template-columns:repeat(3,minmax(0,1fr))}
     .cards-2{grid-template-columns:repeat(2,minmax(0,1fr))}
     .cards-5{grid-template-columns:repeat(5,minmax(0,1fr))}
-    @media (max-width:980px){.cards-3,.cards-5{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:980px){.cards-3,.cards-5{grid-template-columns:repeat(2,1fr)}}
     @media (max-width:640px){.cards-2,.cards-3,.cards-5{grid-template-columns:1fr}}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));border:1px solid var(--stroke);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      border:1px solid var(--stroke);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
     .card h3{margin:0 0 8px;font-size:20px}
     .card p{margin:6px 0;color:var(--muted)}
+
     .kpi{display:flex;align-items:center;gap:.8rem;color:var(--muted);font-weight:600}
     .kpi i{font-size:20px}
+
+    /* Steps */
     .steps{display:grid;grid-template-columns:repeat(9,1fr);gap:12px;overflow:auto;padding-bottom:6px}
     .step{min-width:180px;background:var(--card);border:1px dashed var(--stroke);border-radius:14px;padding:14px}
     .step strong{display:flex;align-items:center;gap:.5rem}
     .section-cta{margin-top:22px}
+
     .func .card{background:linear-gradient(180deg, rgba(39,167,231,.08), rgba(167,139,250,.05));}
     .func .card ul{margin:10px 0 0 18px;color:var(--muted)}
     .benefits .card{background:linear-gradient(180deg, rgba(34,197,94,.08), rgba(34,197,94,.02));}
+
     .case{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
     @media (max-width:900px){.case{grid-template-columns:1fr}}
+
     .case .proof{background:linear-gradient(180deg, rgba(45,212,191,.08), rgba(167,139,250,.06));}
+
     footer{padding:40px 0;color:#9fb0d0;font-size:.92rem}
     .small{font-size:.92rem;color:var(--muted)}
     .divider{height:1px;background:linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent);margin:22px 0}
     .float-cta{position:fixed;right:18px;bottom:18px;z-index:60}
+
+    /* Utilities */
+    .hide-mobile{display:block}
+    @media (max-width:860px){.hide-mobile{display:none}}
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
       <div class="brand"><i></i><span>VIKI</span></div>
-      <nav class="hide-mobile">
-        <a href="#about">О продукте</a>
-        <a href="#how">Как это работает</a>
-        <a href="#blocks">Функции</a>
-        <a href="#benefits">Выгоды</a>
-        <a href="#cases">Кейсы</a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+
+      <nav class="menu" id="mainMenu" aria-label="Primary">
+        <a href="#about" data-i18n="menu.about">О продукте</a>
+        <a href="#how" data-i18n="menu.how">Как это работает</a>
+        <a href="#blocks" data-i18n="menu.blocks">Функции</a>
+        <a href="#benefits" data-i18n="menu.benefits">Выгоды</a>
+        <a href="#cases" data-i18n="menu.cases">Кейсы</a>
       </nav>
-      <a href="#cta" class="btn">🚀 Запустить демо</a>
+
+      <div class="nav-right">
+        <div class="lang-switch" role="group" aria-label="Language">
+          <button type="button" data-lang="ru" class="active">RU</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+        <a href="#cta" class="btn" data-i18n="cta.demoTop">🚀 Запустить демо</a>
+      </div>
     </div>
   </header>
 
@@ -100,20 +154,24 @@
     <section class="hero" id="top">
       <div class="halo"></div>
       <div class="container">
-        <div class="pill">Автономная среда продаж в Telegram</div>
-        <h1>Платформа, которая <span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">сама находит клиентов</span> в Telegram и доводит их до сделки</h1>
-        <p>Не CRM. Не сервис рассылок. Не ферма аккаунтов. VIKI — автономная интеллектуальная система, которая работает за вас: ищет аудиторию, ведёт диалоги, фиксирует лидов в CRM и закрывает сделки.</p>
+        <div class="pill" data-i18n="hero.pill">Автономная среда продаж в Telegram</div>
+        <h1 data-i18n-html="hero.title">
+          Платформа, которая <span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">сама находит клиентов</span> в Telegram и доводит их до сделки
+        </h1>
+        <p class="hero-sub" data-i18n="hero.subtitle">
+          Не CRM. Не сервис рассылок. Не ферма аккаунтов. VIKI — автономная интеллектуальная система, которая работает за вас: ищет аудиторию, ведёт диалоги, фиксирует лидов в CRM и закрывает сделки.
+        </p>
         <div class="cta">
-          <a class="btn" href="#cta">🚀 Получить первых клиентов с VIKI</a>
-          <a class="btn secondary" href="#how">Как это работает</a>
+          <a class="btn" href="#cta" data-i18n="cta.heroPrimary">🚀 Получить первых клиентов с VIKI</a>
+          <a class="btn secondary" href="#how" data-i18n="cta.heroSecondary">Как это работает</a>
         </div>
         <div class="badges">
-          <div class="badge"><i>📈</i><div><strong>Новые клиенты каждый день</strong><div class="small">Автоматическая лидогенерация в Telegram</div></div></div>
-          <div class="badge"><i>⏳</i><div><strong>Экономия времени</strong><div class="small">Минимум ручной работы</div></div></div>
-          <div class="badge"><i>🤖</i><div><strong>Автопилот</strong><div class="small">AI ведёт диалоги и оптимизирует воронки</div></div></div>
-          <div class="badge"><i>📊</i><div><strong>Прозрачная аналитика</strong><div class="small">Путь клиента: от контакта до сделки</div></div></div>
-          <div class="badge"><i>🛡</i><div><strong>Безопасность</strong><div class="small">Антибан-ядро и резервные механизмы</div></div></div>
-          <div class="badge"><i>💰</i><div><strong>Рост продаж</strong><div class="small">Система учится и повышает конверсию</div></div></div>
+          <div class="badge"><i>📈</i><div><strong data-i18n="badges.b1.t">Новые клиенты каждый день</strong><div class="small" data-i18n="badges.b1.d">Автоматическая лидогенерация в Telegram</div></div></div>
+          <div class="badge"><i>⏳</i><div><strong data-i18n="badges.b2.t">Экономия времени</strong><div class="small" data-i18n="badges.b2.d">Минимум ручной работы</div></div></div>
+          <div class="badge"><i>🤖</i><div><strong data-i18n="badges.b3.t">Автопилот</strong><div class="small" data-i18n="badges.b3.d">AI ведёт диалоги и оптимизирует воронки</div></div></div>
+          <div class="badge"><i>📊</i><div><strong data-i18n="badges.b4.t">Прозрачная аналитика</strong><div class="small" data-i18n="badges.b4.d">Путь клиента: от контакта до сделки</div></div></div>
+          <div class="badge"><i>🛡</i><div><strong data-i18n="badges.b5.t">Безопасность</strong><div class="small" data-i18n="badges.b5.d">Антибан-ядро и резервные механизмы</div></div></div>
+          <div class="badge"><i>💰</i><div><strong data-i18n="badges.b6.t">Рост продаж</strong><div class="small" data-i18n="badges.b6.d">Система учится и повышает конверсию</div></div></div>
         </div>
       </div>
     </section>
@@ -121,13 +179,15 @@
     <!-- About -->
     <section id="about">
       <div class="container">
-        <h2>Что такое VIKI?</h2>
-        <p class="lead">VIKI = полный цикл продаж в Telegram: <strong>поиск аудитории по ключевым словам</strong> → <strong>регистрация и прогрев аккаунтов</strong> → <strong>автоматические диалоги и CRM</strong> → <strong>аналитика, оптимизация и удержание</strong>. Просто запускаете проект — и VIKI сама делает всё остальное.</p>
+        <h2 data-i18n="about.title">Что такое VIKI?</h2>
+        <p class="lead" data-i18n="about.lead">
+          VIKI = полный цикл продаж в Telegram: <strong>поиск аудитории по ключевым словам</strong> → <strong>регистрация и прогрев аккаунтов</strong> → <strong>автоматические диалоги и CRM</strong> → <strong>аналитика, оптимизация и удержание</strong>. Просто запускаете проект — и VIKI сама делает всё остальное.
+        </p>
         <div class="divider"></div>
         <div class="grid cards-3">
-          <div class="card"><div class="kpi"><i>🧠</i>AI‑ядро и автопилот</div><p>От строения воронки до переписывания CTA — решения принимает алгоритм, обучаясь на фактических результатах.</p></div>
-          <div class="card"><div class="kpi"><i>🔑</i>Лидогенерация по ключам</div><p>KeywordAI находит релевантные сообщества, Parser собирает аудиторию, а база очищается автоматически.</p></div>
-          <div class="card"><div class="kpi"><i>🛡</i>Антибан и масштаб</div><p>Поведенческая мимикрия, контроль лимитов и прокси‑инфраструктура выдерживают миллионы аккаунтов.</p></div>
+          <div class="card"><div class="kpi"><i>🧠</i><span data-i18n="about.k1.t">AI-ядро и автопилот</span></div><p data-i18n="about.k1.d">От строения воронки до переписывания CTA — решения принимает алгоритм, обучаясь на фактических результатах.</p></div>
+          <div class="card"><div class="kpi"><i>🔑</i><span data-i18n="about.k2.t">Лидогенерация по ключам</span></div><p data-i18n="about.k2.d">KeywordAI находит релевантные сообщества, Parser собирает аудиторию, а база очищается автоматически.</p></div>
+          <div class="card"><div class="kpi"><i>🛡</i><span data-i18n="about.k3.t">Антибан и масштаб</span></div><p data-i18n="about.k3.d">Поведенческая мимикрия, контроль лимитов и прокси-инфраструктура выдерживают миллионы аккаунтов.</p></div>
         </div>
       </div>
     </section>
@@ -135,65 +195,65 @@
     <!-- How it works -->
     <section id="how">
       <div class="container">
-        <h2>Как VIKI приносит клиентов</h2>
+        <h2 data-i18n="how.title">Как VIKI приносит клиентов</h2>
         <div class="steps">
-          <div class="step"><strong>1. 📝 Проект</strong><div class="small">Выбираете продукт/оффер</div></div>
-          <div class="step"><strong>2. 🔑 Ключи</strong><div class="small">AI генерирует запросы</div></div>
-          <div class="step"><strong>3. 📡 Поиск</strong><div class="small">Находим и собираем аудиторию</div></div>
-          <div class="step"><strong>4. 🤖 Ферма</strong><div class="small">Регистрация и прогрев аккаунтов</div></div>
-          <div class="step"><strong>5. 💬 Диалоги</strong><div class="small">Первые контакты с лидами</div></div>
-          <div class="step"><strong>6. 📂 CRM</strong><div class="small">Лиды фиксируются автоматически</div></div>
-          <div class="step"><strong>7. 🛡 Безопасность</strong><div class="small">Антибан‑контроль и лимиты</div></div>
-          <div class="step"><strong>8. 🌐 Контент</strong><div class="small">Telegra.ph‑страницы под офферы</div></div>
-          <div class="step"><strong>9. 📊 Оптимизация</strong><div class="small">AI улучшает конверсию</div></div>
+          <div class="step"><strong>1. <span data-i18n="how.s1.t">📝 Проект</span></strong><div class="small" data-i18n="how.s1.d">Выбираете продукт/оффер</div></div>
+          <div class="step"><strong>2. <span data-i18n="how.s2.t">🔑 Ключи</span></strong><div class="small" data-i18n="how.s2.d">AI генерирует запросы</div></div>
+          <div class="step"><strong>3. <span data-i18n="how.s3.t">📡 Поиск</span></strong><div class="small" data-i18n="how.s3.d">Находим и собираем аудиторию</div></div>
+          <div class="step"><strong>4. <span data-i18n="how.s4.t">🤖 Ферма</span></strong><div class="small" data-i18n="how.s4.d">Регистрация и прогрев аккаунтов</div></div>
+          <div class="step"><strong>5. <span data-i18n="how.s5.t">💬 Диалоги</span></strong><div class="small" data-i18n="how.s5.d">Первые контакты с лидами</div></div>
+          <div class="step"><strong>6. <span data-i18n="how.s6.t">📂 CRM</span></strong><div class="small" data-i18n="how.s6.d">Лиды фиксируются автоматически</div></div>
+          <div class="step"><strong>7. <span data-i18n="how.s7.t">🛡 Безопасность</span></strong><div class="small" data-i18n="how.s7.d">Антибан-контроль и лимиты</div></div>
+          <div class="step"><strong>8. <span data-i18n="how.s8.t">🌐 Контент</span></strong><div class="small" data-i18n="how.s8.d">Telegra.ph-страницы под офферы</div></div>
+          <div class="step"><strong>9. <span data-i18n="how.s9.t">📊 Оптимизация</span></strong><div class="small" data-i18n="how.s9.d">AI улучшает конверсию</div></div>
         </div>
-        <div class="section-cta"><a class="btn" href="#cta">📊 Попробовать сценарий на своём продукте</a></div>
+        <div class="section-cta"><a class="btn" href="#cta" data-i18n="how.cta">📊 Попробовать сценарий на своём продукте</a></div>
       </div>
     </section>
 
     <!-- Functional blocks -->
     <section id="blocks">
       <div class="container func">
-        <h2>5 центров компетенции VIKI</h2>
+        <h2 data-i18n="blocks.title">5 центров компетенции VIKI</h2>
         <div class="grid cards-5">
           <div class="card">
-            <h3>CRM и воронки</h3>
+            <h3 data-i18n="blocks.b1.t">CRM и воронки</h3>
             <ul>
-              <li>Лид автоматически попадает в CRM</li>
-              <li>AI строит воронку по продукту</li>
-              <li>Прозрачные статусы и задачи</li>
+              <li data-i18n="blocks.b1.i1">Лид автоматически попадает в CRM</li>
+              <li data-i18n="blocks.b1.i2">AI строит воронку по продукту</li>
+              <li data-i18n="blocks.b1.i3">Прозрачные статусы и задачи</li>
             </ul>
           </div>
           <div class="card">
-            <h3>Ферма аккаунтов</h3>
+            <h3 data-i18n="blocks.b2.t">Ферма аккаунтов</h3>
             <ul>
-              <li>Регистрация и прогрев Telegram‑аккаунтов</li>
-              <li>Автозамена при блокировке</li>
-              <li>Агент всегда «живой» и надёжный</li>
+              <li data-i18n="blocks.b2.i1">Регистрация и прогрев Telegram-аккаунтов</li>
+              <li data-i18n="blocks.b2.i2">Автозамена при блокировке</li>
+              <li data-i18n="blocks.b2.i3">Агент всегда «живой» и надёжный</li>
             </ul>
           </div>
           <div class="card">
-            <h3>Лидогенерация по ключам</h3>
+            <h3 data-i18n="blocks.b3.t">Лидогенерация по ключам</h3>
             <ul>
-              <li>AI подбирает ключевые слова</li>
-              <li>Parser собирает целевую аудиторию</li>
-              <li>База очищается и обновляется автоматически</li>
+              <li data-i18n="blocks.b3.i1">AI подбирает ключевые слова</li>
+              <li data-i18n="blocks.b3.i2">Parser собирает целевую аудиторию</li>
+              <li data-i18n="blocks.b3.i3">База очищается и обновляется автоматически</li>
             </ul>
           </div>
           <div class="card">
-            <h3>Инфраструктура и безопасность</h3>
+            <h3 data-i18n="blocks.b4.t">Инфраструктура и безопасность</h3>
             <ul>
-              <li>Антибан‑ядро (контент, поведение, ссылки)</li>
-              <li>ProxyHeatmap и контроль IP</li>
-              <li>Стабильность при миллионах аккаунтов</li>
+              <li data-i18n="blocks.b4.i1">Антибан-ядро (контент, поведение, ссылки)</li>
+              <li data-i18n="blocks.b4.i2">ProxyHeatmap и контроль IP</li>
+              <li data-i18n="blocks.b4.i3">Стабильность при миллионах аккаунтов</li>
             </ul>
           </div>
           <div class="card">
-            <h3>AI‑ядро и ControlCenter</h3>
+            <h3 data-i18n="blocks.b5.t">AI-ядро и ControlCenter</h3>
             <ul>
-              <li>Автопилот ведёт воронки</li>
-              <li>FunnelAnalyticsEngine улучшает конверсию</li>
-              <li>TelegraphManager создаёт страницы для офферов</li>
+              <li data-i18n="blocks.b5.i1">Автопилот ведёт воронки</li>
+              <li data-i18n="blocks.b5.i2">FunnelAnalyticsEngine улучшает конверсию</li>
+              <li data-i18n="blocks.b5.i3">TelegraphManager создаёт страницы для офферов</li>
             </ul>
           </div>
         </div>
@@ -203,14 +263,14 @@
     <!-- Benefits -->
     <section id="benefits">
       <div class="container benefits">
-        <h2>Что получает бизнес</h2>
+        <h2 data-i18n="benefits.title">Что получает бизнес</h2>
         <div class="grid cards-3">
-          <div class="card"><h3>📈 Поток лидов</h3><p>Новые клиенты из Telegram каждый день — без ручного поиска.</p></div>
-          <div class="card"><h3>⏳ Меньше рутины</h3><p>AI делает за вас поиск, переписку и ведение по воронке.</p></div>
-          <div class="card"><h3>📊 Прозрачность</h3><p>Полный контроль: кто, где и на каком этапе находится.</p></div>
-          <div class="card"><h3>🔄 Рост конверсии</h3><p>AI тестирует тексты и CTA, улучшая результаты еженедельно.</p></div>
-          <div class="card"><h3>💰 Снижение затрат</h3><p>Меньше рекламы и ручного труда при большей эффективности.</p></div>
-          <div class="card"><h3>🤝 Удержание</h3><p>Возврат «уснувших» клиентов и апсейлы повышают LTV.</p></div>
+          <div class="card"><h3 data-i18n="benefits.i1.t">📈 Поток лидов</h3><p data-i18n="benefits.i1.d">Новые клиенты из Telegram каждый день — без ручного поиска.</p></div>
+          <div class="card"><h3 data-i18n="benefits.i2.t">⏳ Меньше рутины</h3><p data-i18n="benefits.i2.d">AI делает за вас поиск, переписку и ведение по воронке.</p></div>
+          <div class="card"><h3 data-i18n="benefits.i3.t">📊 Прозрачность</h3><p data-i18n="benefits.i3.d">Полный контроль: кто, где и на каком этапе находится.</p></div>
+          <div class="card"><h3 data-i18n="benefits.i4.t">🔄 Рост конверсии</h3><p data-i18n="benefits.i4.d">AI тестирует тексты и CTA, улучшая результаты еженедельно.</p></div>
+          <div class="card"><h3 data-i18n="benefits.i5.t">💰 Снижение затрат</h3><p data-i18n="benefits.i5.d">Меньше рекламы и ручного труда при большей эффективности.</p></div>
+          <div class="card"><h3 data-i18n="benefits.i6.t">🤝 Удержание</h3><p data-i18n="benefits.i6.d">Возврат «уснувших» клиентов и апсейлы повышают LTV.</p></div>
         </div>
       </div>
     </section>
@@ -219,18 +279,18 @@
     <section id="cases">
       <div class="container case">
         <div class="card proof">
-          <h2>VIKI продаёт сама себя</h2>
-          <p class="lead">Мы используем те же механики, что предлагаем вам. Через ферму аккаунтов и воронки VIKI привела в систему первых <strong>1000 клиентов</strong> — без рекламного бюджета.</p>
-          <p class="small">Вы получаете доступ к инструменту, который доказал свою эффективность на собственном примере.</p>
-          <div class="section-cta"><a class="btn" href="#cta">Посмотреть, как это выглядело</a></div>
+          <h2 data-i18n="cases.title">VIKI продаёт сама себя</h2>
+          <p class="lead" data-i18n="cases.lead">Мы используем те же механики, что предлагаем вам. Через ферму аккаунтов и воронки VIKI привела в систему первых <strong>1000 клиентов</strong> — без рекламного бюджета.</p>
+          <p class="small" data-i18n="cases.sub">Вы получаете доступ к инструменту, который доказал свою эффективность на собственном примере.</p>
+          <div class="section-cta"><a class="btn" href="#cta" data-i18n="cases.cta">Посмотреть, как это выглядело</a></div>
         </div>
         <div class="card">
-          <h3>Показатели, на которые смотрим</h3>
+          <h3 data-i18n="cases.metrics.title">Показатели, на которые смотрим</h3>
           <ul>
-            <li>CR по этапам воронки и время до сделки</li>
-            <li>Отклик по ключевым словам и сообществам</li>
-            <li>Доля re‑engage и апсейлов</li>
-            <li>Стоимость лида и возврат инвестиций</li>
+            <li data-i18n="cases.metrics.i1">CR по этапам воронки и время до сделки</li>
+            <li data-i18n="cases.metrics.i2">Отклик по ключевым словам и сообществам</li>
+            <li data-i18n="cases.metrics.i3">Доля re-engage и апсейлов</li>
+            <li data-i18n="cases.metrics.i4">Стоимость лида и возврат инвестиций</li>
           </ul>
         </div>
       </div>
@@ -239,15 +299,14 @@
     <!-- CTA -->
     <section id="cta">
       <div class="container">
-        <h2>Готовы получить первых клиентов с VIKI?</h2>
-        <p class="lead">Запустим демо под ваш продукт: VIKI сама найдёт аудиторию, начнёт диалоги и покажет первые лиды.</p>
+        <h2 data-i18n="cta.title">Готовы получить первых клиентов с VIKI?</h2>
+        <p class="lead" data-i18n="cta.lead">Запустим демо под ваш продукт: VIKI сама найдёт аудиторию, начнёт диалоги и покажет первые лиды.</p>
         <div class="cta">
-          <a class="btn" href="#">🚀 Запустить демо</a>
-          <a class="btn secondary" href="#">📞 Получить консультацию</a>
+          <a class="btn" href="#" data-i18n="cta.primary">🚀 Запустить демо</a>
+          <a class="btn secondary" href="#" data-i18n="cta.secondary">📞 Получить консультацию</a>
         </div>
       </div>
     </section>
-
   </main>
 
   <footer>
@@ -255,11 +314,145 @@
       <div class="divider"></div>
       <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between">
         <div class="brand"><i></i><span>VIKI</span></div>
-        <div class="small">© 2025 VIKI Platform. Все права защищены.</div>
+        <div class="small" data-i18n="footer.copy">© 2025 VIKI Platform. Все права защищены.</div>
       </div>
     </div>
-    <a class="btn float-cta" href="#cta">🚀 Демо</a>
+    <a class="btn float-cta" href="#cta" data-i18n="cta.short">🚀 Демо</a>
   </footer>
 
+  <script>
+    // Mobile menu toggle
+    const toggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('mainMenu');
+    toggle.addEventListener('click', () => menu.classList.toggle('open'));
+
+    // i18n dictionary (RU / EN)
+    const I18N = {
+      ru: {
+        "menu.about":"О продукте","menu.how":"Как это работает","menu.blocks":"Функции",
+        "menu.benefits":"Выгоды","menu.cases":"Кейсы",
+        "cta.demoTop":"🚀 Запустить демо",
+        "hero.pill":"Автономная среда продаж в Telegram",
+        "hero.title":"Платформа, которая <span style='background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent'>сама находит клиентов</span> в Telegram и доводит их до сделки",
+        "hero.subtitle":"Не CRM. Не сервис рассылок. Не ферма аккаунтов. VIKI — автономная интеллектуальная система, которая работает за вас: ищет аудиторию, ведёт диалоги, фиксирует лидов в CRM и закрывает сделки.",
+        "cta.heroPrimary":"🚀 Получить первых клиентов с VIKI","cta.heroSecondary":"Как это работает",
+        "badges.b1.t":"Новые клиенты каждый день","badges.b1.d":"Автоматическая лидогенерация в Telegram",
+        "badges.b2.t":"Экономия времени","badges.b2.d":"Минимум ручной работы",
+        "badges.b3.t":"Автопилот","badges.b3.d":"AI ведёт диалоги и оптимизирует воронки",
+        "badges.b4.t":"Прозрачная аналитика","badges.b4.d":"Путь клиента: от контакта до сделки",
+        "badges.b5.t":"Безопасность","badges.b5.d":"Антибан-ядро и резервные механизмы",
+        "badges.b6.t":"Рост продаж","badges.b6.d":"Система учится и повышает конверсию",
+        "about.title":"Что такое VIKI?",
+        "about.lead":"VIKI = полный цикл продаж в Telegram: <strong>поиск аудитории по ключевым словам</strong> → <strong>регистрация и прогрев аккаунтов</strong> → <strong>автоматические диалоги и CRM</strong> → <strong>аналитика, оптимизация и удержание</strong>. Просто запускаете проект — и VIKI сама делает всё остальное.",
+        "about.k1.t":"AI-ядро и автопилот","about.k1.d":"От строения воронки до переписывания CTA — решения принимает алгоритм, обучаясь на фактических результатах.",
+        "about.k2.t":"Лидогенерация по ключам","about.k2.d":"KeywordAI находит релевантные сообщества, Parser собирает аудиторию, а база очищается автоматически.",
+        "about.k3.t":"Антибан и масштаб","about.k3.d":"Поведенческая мимикрия, контроль лимитов и прокси-инфраструктура выдерживают миллионы аккаунтов.",
+        "how.title":"Как VIKI приносит клиентов",
+        "how.s1.t":"📝 Проект","how.s1.d":"Выбираете продукт/оффер",
+        "how.s2.t":"🔑 Ключи","how.s2.d":"AI генерирует запросы",
+        "how.s3.t":"📡 Поиск","how.s3.d":"Находим и собираем аудиторию",
+        "how.s4.t":"🤖 Ферма","how.s4.d":"Регистрация и прогрев аккаунтов",
+        "how.s5.t":"💬 Диалоги","how.s5.d":"Первые контакты с лидами",
+        "how.s6.t":"📂 CRM","how.s6.d":"Лиды фиксируются автоматически",
+        "how.s7.t":"🛡 Безопасность","how.s7.d":"Антибан-контроль и лимиты",
+        "how.s8.t":"🌐 Контент","how.s8.d":"Telegra.ph-страницы под офферы",
+        "how.s9.t":"📊 Оптимизация","how.s9.d":"AI улучшает конверсию",
+        "how.cta":"📊 Попробовать сценарий на своём продукте",
+        "blocks.title":"5 центров компетенции VIKI",
+        "blocks.b1.t":"CRM и воронки","blocks.b1.i1":"Лид автоматически попадает в CRM","blocks.b1.i2":"AI строит воронку по продукту","blocks.b1.i3":"Прозрачные статусы и задачи",
+        "blocks.b2.t":"Ферма аккаунтов","blocks.b2.i1":"Регистрация и прогрев Telegram-аккаунтов","blocks.b2.i2":"Автозамена при блокировке","blocks.b2.i3":"Агент всегда «живой» и надёжный",
+        "blocks.b3.t":"Лидогенерация по ключам","blocks.b3.i1":"AI подбирает ключевые слова","blocks.b3.i2":"Parser собирает целевую аудиторию","blocks.b3.i3":"База очищается и обновляется автоматически",
+        "blocks.b4.t":"Инфраструктура и безопасность","blocks.b4.i1":"Антибан-ядро (контент, поведение, ссылки)","blocks.b4.i2":"ProxyHeatmap и контроль IP","blocks.b4.i3":"Стабильность при миллионах аккаунтов",
+        "blocks.b5.t":"AI-ядро и ControlCenter","blocks.b5.i1":"Автопилот ведёт воронки","blocks.b5.i2":"FunnelAnalyticsEngine улучшает конверсию","blocks.b5.i3":"TelegraphManager создаёт страницы для офферов",
+        "benefits.title":"Что получает бизнес",
+        "benefits.i1.t":"📈 Поток лидов","benefits.i1.d":"Новые клиенты из Telegram каждый день — без ручного поиска.",
+        "benefits.i2.t":"⏳ Меньше рутины","benefits.i2.d":"AI делает за вас поиск, переписку и ведение по воронке.",
+        "benefits.i3.t":"📊 Прозрачность","benefits.i3.d":"Полный контроль: кто, где и на каком этапе находится.",
+        "benefits.i4.t":"🔄 Рост конверсии","benefits.i4.d":"AI тестирует тексты и CTA, улучшая результаты еженедельно.",
+        "benefits.i5.t":"💰 Снижение затрат","benefits.i5.d":"Меньше рекламы и ручного труда при большей эффективности.",
+        "benefits.i6.t":"🤝 Удержание","benefits.i6.d":"Возврат «уснувших» клиентов и апсейлы повышают LTV.",
+        "cases.title":"VIKI продаёт сама себя","cases.lead":"Мы используем те же механики, что предлагаем вам. Через ферму аккаунтов и воронки VIKI привела в систему первых <strong>1000 клиентов</strong> — без рекламного бюджета.","cases.sub":"Вы получаете доступ к инструменту, который доказал свою эффективность на собственном примере.","cases.cta":"Посмотреть, как это выглядело",
+        "cases.metrics.title":"Показатели, на которые смотрим","cases.metrics.i1":"CR по этапам воронки и время до сделки","cases.metrics.i2":"Отклик по ключевым словам и сообществам","cases.metrics.i3":"Доля re-engage и апсейлов","cases.metrics.i4":"Стоимость лида и возврат инвестиций",
+        "cta.title":"Готовы получить первых клиентов с VIKI?","cta.lead":"Запустим демо под ваш продукт: VIKI сама найдёт аудиторию, начнёт диалоги и покажет первые лиды.","cta.primary":"🚀 Запустить демо","cta.secondary":"📞 Получить консультацию","cta.short":"🚀 Демо",
+        "footer.copy":"© 2025 VIKI Platform. Все права защищены."
+      },
+      en: {
+        "menu.about":"About","menu.how":"How it works","menu.blocks":"Features",
+        "menu.benefits":"Benefits","menu.cases":"Proof",
+        "cta.demoTop":"🚀 Launch demo",
+        "hero.pill":"Autonomous sales environment in Telegram",
+        "hero.title":"A platform that <span style='background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent'>finds customers by itself</span> in Telegram and drives them to purchase",
+        "hero.subtitle":"Not a CRM. Not a mailing tool. Not an account farm. VIKI is an autonomous intelligent system that works for you: finds audiences, chats, records leads in CRM and closes deals.",
+        "cta.heroPrimary":"🚀 Get your first leads with VIKI","cta.heroSecondary":"See how it works",
+        "badges.b1.t":"New clients every day","badges.b1.d":"Automatic lead gen in Telegram",
+        "badges.b2.t":"Save time","badges.b2.d":"Minimal manual work",
+        "badges.b3.t":"Autopilot","badges.b3.d":"AI runs dialogs and optimizes funnels",
+        "badges.b4.t":"Analytics","badges.b4.d":"Full path from contact to deal",
+        "badges.b5.t":"Safety","badges.b5.d":"Anti-ban core and fallbacks",
+        "badges.b6.t":"Higher sales","badges.b6.d":"System learns and improves conversion",
+        "about.title":"What is VIKI?",
+        "about.lead":"VIKI = full sales cycle in Telegram: <strong>keyword-based audience search</strong> → <strong>account registration & warm-up</strong> → <strong>automated dialogs & CRM</strong> → <strong>analytics, optimization & retention</strong>. You start a project — VIKI does the rest.",
+        "about.k1.t":"AI core & autopilot","about.k1.d":"From funnel design to rewriting CTAs — the algorithm decides based on real results.",
+        "about.k2.t":"Keyword lead gen","about.k2.d":"KeywordAI finds relevant communities, Parser collects audience, the base is auto-cleaned.",
+        "about.k3.t":"Anti-ban & scale","about.k3.d":"Behavior simulation, limits control and proxy infra handle millions of accounts.",
+        "how.title":"How VIKI brings customers",
+        "how.s1.t":"📝 Project","how.s1.d":"Choose product/offer",
+        "how.s2.t":"🔑 Keywords","how.s2.d":"AI generates queries",
+        "how.s3.t":"📡 Discovery","how.s3.d":"Find & collect the audience",
+        "how.s4.t":"🤖 Farm","how.s4.d":"Register & warm up accounts",
+        "how.s5.t":"💬 Dialogs","how.s5.d":"First contacts with leads",
+        "how.s6.t":"📂 CRM","how.s6.d":"Leads are recorded automatically",
+        "how.s7.t":"🛡 Safety","how.s7.d":"Anti-ban control and limits",
+        "how.s8.t":"🌐 Content","how.s8.d":"Telegra.ph pages for offers",
+        "how.s9.t":"📊 Optimization","how.s9.d":"AI improves conversion",
+        "how.cta":"📊 Try the flow on your product",
+        "blocks.title":"5 competence centers",
+        "blocks.b1.t":"CRM & funnels","blocks.b1.i1":"Lead lands in CRM automatically","blocks.b1.i2":"AI builds funnel from your product","blocks.b1.i3":"Transparent statuses & tasks",
+        "blocks.b2.t":"Account farm","blocks.b2.i1":"Telegram registration & warm-up","blocks.b2.i2":"Auto replacement on blocks","blocks.b2.i3":"Agent stays live & reliable",
+        "blocks.b3.t":"Keyword lead gen","blocks.b3.i1":"AI selects keywords","blocks.b3.i2":"Parser collects target audience","blocks.b3.i3":"Base cleans & updates itself",
+        "blocks.b4.t":"Infra & security","blocks.b4.i1":"Anti-ban core (content, behavior, links)","blocks.b4.i2":"ProxyHeatmap & IP control","blocks.b4.i3":"Stable at millions of accounts",
+        "blocks.b5.t":"AI core & ControlCenter","blocks.b5.i1":"Autopilot runs funnels","blocks.b5.i2":"FunnelAnalyticsEngine boosts CR","blocks.b5.i3":"TelegraphManager builds offer pages",
+        "benefits.title":"Business benefits",
+        "benefits.i1.t":"📈 Lead flow","benefits.i1.d":"New clients from Telegram daily — no manual search.",
+        "benefits.i2.t":"⏳ Less routine","benefits.i2.d":"AI handles search, chatting and funneling.",
+        "benefits.i3.t":"📊 Transparency","benefits.i3.d":"Full control of every stage.",
+        "benefits.i4.t":"🔄 Higher conversion","benefits.i4.d":"AI A/B tests copy and CTAs.",
+        "benefits.i5.t":"💰 Lower costs","benefits.i5.d":"Less ads & manual work for better results.",
+        "benefits.i6.t":"🤝 Retention","benefits.i6.d":"Re-engage and upsells increase LTV.",
+        "cases.title":"VIKI sells itself","cases.lead":"We use the same mechanics we offer you. Using the farm and funnels, VIKI attracted the first <strong>1,000 clients</strong> — with zero ad budget.","cases.sub":"You get a tool proven on our own case.","cases.cta":"See how it worked",
+        "cases.metrics.title":"Key metrics we track","cases.metrics.i1":"CR per stage & time-to-deal","cases.metrics.i2":"Response by keywords & communities","cases.metrics.i3":"Re-engage & upsell share","cases.metrics.i4":"Cost per lead & ROI",
+        "cta.title":"Ready to get your first clients with VIKI?","cta.lead":"We’ll run a demo on your product: VIKI will find the audience, start dialogs and show first leads.","cta.primary":"🚀 Launch demo","cta.secondary":"📞 Get a consultation","cta.short":"🚀 Demo",
+        "footer.copy":"© 2025 VIKI Platform. All rights reserved."
+      }
+    };
+
+    // Apply language
+    const langButtons = document.querySelectorAll('.lang-switch button');
+    function setLang(lang){
+      const dict = I18N[lang] || I18N.ru;
+      document.documentElement.lang = lang;
+
+      // Text nodes
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const key = el.getAttribute('data-i18n');
+        if(dict[key] !== undefined) el.innerHTML = dict[key];
+      });
+      // HTML content blocks (with markup)
+      document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+        const key = el.getAttribute('data-i18n-html');
+        if(dict[key] !== undefined) el.innerHTML = dict[key];
+      });
+
+      // Active button
+      langButtons.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+      localStorage.setItem('viki_lang', lang);
+    }
+    langButtons.forEach(b=>b.addEventListener('click', ()=>setLang(b.dataset.lang)));
+
+    // Init language from storage or browser
+    const saved = localStorage.getItem('viki_lang');
+    const browserLang = (navigator.language||'ru').slice(0,2).toLowerCase();
+    setLang(saved || (browserLang==='en' ? 'en' : 'ru'));
+  </script>
 </body>
 </html>
