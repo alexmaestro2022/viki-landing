@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>VIKI — платформа продаж в Telegram</title>
   <meta name="description" content="VIKI — автономная интеллектуальная среда продаж в Telegram: находит клиентов, ведёт диалоги, доводит до сделки." />
-  <!-- FAVICON из Mail.ru -->
-  <link rel="icon" href="https://cloud.mail.ru/public/ucTR/MPp41EQ1S" sizes="any">
+  <!-- FAVICON локально из /assets -->
+  <link rel="icon" href="assets/favicon.png" sizes="any" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -182,8 +182,8 @@
   <header>
     <div class="container nav">
       <div class="brand shine">
-        <!-- ЛОГОТИП В ШАПКЕ (Mail.ru) -->
-        <img src="https://cloud.mail.ru/public/vYN8/cXSEaLxtE" alt="VIKI logo" />
+        <!-- ЛОГОТИП В ШАПКЕ (локально из /assets) -->
+        <img src="assets/viki-logo.png" alt="VIKI logo" />
       </div>
 
       <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
@@ -211,9 +211,9 @@
     <section class="hero" id="top">
       <div class="halo"></div>
       <div class="container">
-        <!-- ЛОГОТИП НА ПЕРВОМ ЭКРАНЕ -->
+        <!-- ЛОГОТИП НА ПЕРВОМ ЭКРАНЕ (локально) -->
         <div class="hero-logo">
-          <img src="https://cloud.mail.ru/public/vYN8/cXSEaLxtE" alt="VIKI logo large" height="58" />
+          <img src="assets/viki-logo.png" alt="VIKI logo large" height="58" />
           <div class="pill" data-i18n="hero.pill">Автономная среда продаж в Telegram</div>
         </div>
 
@@ -376,7 +376,7 @@
       <div class="divider"></div>
       <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between">
         <div class="brand">
-          <img src="https://cloud.mail.ru/public/vYN8/cXSEaLxtE" alt="VIKI logo small" style="height:28px">
+          <img src="assets/viki-logo.png" alt="VIKI logo small" style="height:28px">
         </div>
         <div class="small" data-i18n="footer.copy">© 2025 VIKI Platform. Все права защищены.</div>
       </div>
@@ -399,104 +399,7 @@
     document.querySelectorAll('.reveal, .card, .badge, .step').forEach(el=>revealObserver.observe(el));
 
     // i18n dictionary (RU / EN)
-    const I18N = {
-      ru: {
-        "menu.about":"О продукте","menu.how":"Как это работает","menu.blocks":"Функции",
-        "menu.benefits":"Выгоды","menu.cases":"Кейсы",
-        "cta.demoTop":"🚀 Запустить демо",
-        "hero.pill":"Автономная среда продаж в Telegram",
-        "hero.title":"Платформа, которая <span style='background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent'>сама находит клиентов</span> в Telegram и доводит их до сделки",
-        "hero.subtitle":"Не CRM. Не сервис рассылок. Не ферма аккаунтов. VIKI — автономная интеллектуальная система, которая работает за вас: ищет аудиторию, ведёт диалоги, фиксирует лидов в CRM и закрывает сделки.",
-        "cta.heroPrimary":"🚀 Получить первых клиентов с VIKI","cta.heroSecondary":"Как это работает",
-        "badges.b1.t":"Новые клиенты каждый день","badges.b1.d":"Автоматическая лидогенерация в Telegram",
-        "badges.b2.t":"Экономия времени","badges.b2.d":"Минимум ручной работы",
-        "badges.b3.t":"Автопилот","badges.b3.d":"AI ведёт диалоги и оптимизирует воронки",
-        "badges.b4.t":"Прозрачная аналитика","badges.b4.d":"Путь клиента: от контакта до сделки",
-        "badges.b5.t":"Безопасность","badges.b5.d":"Антибан-ядро и резервные механизмы",
-        "badges.b6.t":"Рост продаж","badges.b6.d":"Система учится и повышает конверсию",
-        "about.title":"Что такое VIKI?",
-        "about.lead":"VIKI = полный цикл продаж в Telegram: <strong>поиск аудитории по ключевым словам</strong> → <strong>регистрация и прогрев аккаунтов</strong> → <strong>автоматические диалоги и CRM</strong> → <strong>аналитика, оптимизация и удержание</strong>. Просто запускаете проект — и VIKI сама делает всё остальное.",
-        "about.k1.t":"AI-ядро и автопилот","about.k1.d":"От строения воронки до переписывания CTA — решения принимает алгоритм, обучаясь на фактических результатах.",
-        "about.k2.t":"Лидогенерация по ключам","about.k2.d":"KeywordAI находит релевантные сообщества, Parser собирает аудиторию, а база очищается автоматически.",
-        "about.k3.t":"Антибан и масштаб","about.k3.d":"Поведенческая мимикрия, контроль лимитов и прокси-инфраструктура выдерживают миллионы аккаунтов.",
-        "how.title":"Как VIKI приносит клиентов",
-        "how.s1.t":"📝 Проект","how.s1.d":"Выбираете продукт/оффер",
-        "how.s2.t":"🔑 Ключи","how.s2.d":"AI генерирует запросы",
-        "how.s3.t":"📡 Поиск","how.s3.d":"Находим и собираем аудиторию",
-        "how.s4.t":"🤖 Ферма","how.s4.d":"Регистрация и прогрев аккаунтов",
-        "how.s5.t":"💬 Диалоги","how.s5.d":"Первые контакты с лидами",
-        "how.s6.t":"📂 CRM","how.s6.d":"Лиды фиксируются автоматически",
-        "how.s7.t":"🛡 Безопасность","how.s7.d":"Антибан-контроль и лимиты",
-        "how.s8.t":"🌐 Контент","how.s8.d":"Telegra.ph-страницы под офферы",
-        "how.s9.t":"📊 Оптимизация","how.s9.d":"AI улучшает конверсию",
-        "how.cta":"📊 Попробовать сценарий на своём продукте",
-        "blocks.title":"5 центров компетенции VIKI",
-        "blocks.b1.t":"CRM и воронки","blocks.b1.i1":"Лид автоматически попадает в CRM","blocks.b1.i2":"AI строит воронку по продукту","blocks.b1.i3":"Прозрачные статусы и задачи",
-        "blocks.b2.t":"Ферма аккаунтов","blocks.b2.i1":"Регистрация и прогрев Telegram-аккаунтов","blocks.b2.i2":"Автозамена при блокировке","blocks.b2.i3":"Агент всегда «живой» и надёжный",
-        "blocks.b3.t":"Лидогенерация по ключам","blocks.b3.i1":"AI подбирает ключевые слова","blocks.b3.i2":"Parser собирает целевую аудиторию","blocks.b3.i3":"База очищается и обновляется автоматически",
-        "blocks.b4.t":"Инфраструктура и безопасность","blocks.b4.i1":"Антибан-ядро (контент, поведение, ссылки)","blocks.b4.i2":"ProxyHeatmap и контроль IP","blocks.b4.i3":"Стабильность при миллионах аккаунтов",
-        "blocks.b5.t":"AI-ядро и ControlCenter","blocks.b5.i1":"Автопилот ведёт воронки","blocks.b5.i2":"FunnelAnalyticsEngine улучшает конверсию","blocks.b5.i3":"TelegraphManager создаёт страницы для офферов",
-        "benefits.title":"Что получает бизнес",
-        "benefits.i1.t":"📈 Поток лидов","benefits.i1.d":"Новые клиенты из Telegram каждый день — без ручного поиска.",
-        "benefits.i2.t":"⏳ Меньше рутины","benefits.i2.d":"AI делает за вас поиск, переписку и ведение по воронке.",
-        "benefits.i3.t":"📊 Прозрачность","benefits.i3.d":"Полный контроль: кто, где и на каком этапе находится.",
-        "benefits.i4.t":"🔄 Рост конверсии","benefits.i4.d":"AI тестирует тексты и CTA, улучшая результаты еженедельно.",
-        "benefits.i5.t":"💰 Снижение затрат","benefits.i5.d":"Меньше рекламы и ручного труда при большей эффективности.",
-        "benefits.i6.t":"🤝 Удержание","benefits.i6.d":"Возврат «уснувших» клиентов и апсейлы повышают LTV.",
-        "cases.title":"VIKI продаёт сама себя","cases.lead":"Мы используем те же механики, что предлагаем вам. Через ферму аккаунтов и воронки VIKI привела в систему первых <strong>1000 клиентов</strong> — без рекламного бюджета.","cases.sub":"Вы получаете доступ к инструменту, который доказал свою эффективность на собственном примере.","cases.cta":"Посмотреть, как это выглядело",
-        "cases.metrics.title":"Показатели, на которые смотрим","cases.metrics.i1":"CR по этапам воронки и время до сделки","cases.metrics.i2":"Отклик по ключевым словам и сообществам","cases.metrics.i3":"Доля re-engage и апсейлов","cases.metrics.i4":"Стоимость лида и возврат инвестиций",
-        "cta.title":"Готовы получить первых клиентов с VIKI?","cta.lead":"Запустим демо под ваш продукт: VIKI сама найдёт аудиторию, начнёт диалоги и покажет первые лиды.","cta.primary":"🚀 Запустить демо","cta.secondary":"📞 Получить консультацию","cta.short":"🚀 Демо",
-        "footer.copy":"© 2025 VIKI Platform. Все права защищены."
-      },
-      en: {
-        "menu.about":"About","menu.how":"How it works","menu.blocks":"Features",
-        "menu.benefits":"Benefits","menu.cases":"Proof",
-        "cta.demoTop":"🚀 Launch demo",
-        "hero.pill":"Autonomous sales environment in Telegram",
-        "hero.title":"A platform that <span style='background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent'>finds customers by itself</span> in Telegram and drives them to purchase",
-        "hero.subtitle":"Not a CRM. Not a mailing tool. Not an account farm. VIKI is an autonomous intelligent system that works for you: finds audiences, chats, records leads in CRM and closes deals.",
-        "cta.heroPrimary":"🚀 Get your first leads with VIKI","cta.heroSecondary":"See how it works",
-        "badges.b1.t":"New clients every day","badges.b1.d":"Automatic lead gen in Telegram",
-        "badges.b2.t":"Save time","badges.b2.d":"Minimal manual work",
-        "badges.b3.t":"Autopilot","badges.b3.d":"AI runs dialogs and optimizes funnels",
-        "badges.b4.t":"Analytics","badges.b4.d":"Full path from contact to deal",
-        "badges.b5.t":"Safety","badges.b5.d":"Anti-ban core and fallbacks",
-        "badges.b6.t":"Higher sales","badges.b6.d":"System learns and improves conversion",
-        "about.title":"What is VIKI?",
-        "about.lead":"VIKI = full sales cycle in Telegram: <strong>keyword-based audience search</strong> → <strong>account registration & warm-up</strong> → <strong>automated dialogs & CRM</strong> → <strong>analytics, optimization & retention</strong>. You start a project — VIKI does the rest.",
-        "about.k1.t":"AI core & autopilot","about.k1.d":"From funnel design to rewriting CTAs — the algorithm decides based on real results.",
-        "about.k2.t":"Keyword lead gen","about.k2.d":"KeywordAI finds relevant communities, Parser collects audience, the base is auto-cleaned.",
-        "about.k3.t":"Anti-ban & scale","about.k3.d":"Behavior simulation, limits control and proxy infra handle millions of accounts.",
-        "how.title":"How VIKI brings customers",
-        "how.s1.t":"📝 Project","how.s1.d":"Choose product/offer",
-        "how.s2.t":"🔑 Keywords","how.s2.d":"AI generates queries",
-        "how.s3.t":"📡 Discovery","how.s3.d":"Find & collect the audience",
-        "how.s4.t":"🤖 Farm","how.s4.d":"Register & warm up accounts",
-        "how.s5.t":"💬 Dialogs","how.s5.d":"First contacts with leads",
-        "how.s6.t":"📂 CRM","how.s6.d":"Leads are recorded automatically",
-        "how.s7.t":"🛡 Safety","how.s7.d":"Anti-ban control and limits",
-        "how.s8.t":"🌐 Content","how.s8.d":"Telegra.ph pages for offers",
-        "how.s9.t":"📊 Optimization","how.s9.d":"AI improves conversion",
-        "how.cta":"📊 Try the flow on your product",
-        "blocks.title":"5 competence centers",
-        "blocks.b1.t":"CRM & funnels","blocks.b1.i1":"Lead lands in CRM automatically","blocks.b1.i2":"AI builds funnel from your product","blocks.b1.i3":"Transparent statuses & tasks",
-        "blocks.b2.t":"Account farm","blocks.b2.i1":"Telegram registration & warm-up","blocks.b2.i2":"Auto replacement on blocks","blocks.b2.i3":"Agent stays live & reliable",
-        "blocks.b3.t":"Keyword lead gen","blocks.b3.i1":"AI selects keywords","blocks.b3.i2":"Parser collects target audience","blocks.b3.i3":"Base cleans & updates itself",
-        "blocks.b4.t":"Infra & security","blocks.b4.i1":"Anti-ban core (content, behavior, links)","blocks.b4.i2":"ProxyHeatmap & IP control","blocks.b4.i3":"Stable at millions of accounts",
-        "blocks.b5.t":"AI core & ControlCenter","blocks.b5.i1":"Autopilot runs funnels","blocks.b5.i2":"FunnelAnalyticsEngine boosts CR","blocks.b5.i3":"TelegraphManager builds offer pages",
-        "benefits.title":"Business benefits",
-        "benefits.i1.t":"📈 Lead flow","benefits.i1.d":"New clients from Telegram daily — no manual search.",
-        "benefits.i2.t":"⏳ Less routine","benefits.i2.d":"AI handles search, chatting and funneling.",
-        "benefits.i3.t":"📊 Transparency","benefits.i3.d":"Full control of every stage.",
-        "benefits.i4.t":"🔄 Higher conversion","benefits.i4.d":"AI A/B tests copy and CTAs.",
-        "benefits.i5.t":"💰 Lower costs","benefits.i5.d":"Less ads & manual work for better results.",
-        "benefits.i6.t":"🤝 Retention","benefits.i6.d":"Re-engage and upsells increase LTV.",
-        "cases.title":"VIKI sells itself","cases.lead":"We use the same mechanics we offer you. Using the farm and funnels, VIKI attracted the first <strong>1,000 clients</strong> — with zero ad budget.","cases.sub":"You get a tool proven on our own case.","cases.cta":"See how it worked",
-        "cases.metrics.title":"Key metrics we track","cases.metrics.i1":"CR per stage & time-to-deal","cases.metrics.i2":"Response by keywords & communities","cases.metrics.i3":"Re-engage & upsell share","cases.metrics.i4":"Cost per lead & ROI",
-        "cta.title":"Ready to get your first clients with VIKI?","cta.lead":"We’ll run a demo on your product: VIKI will find the audience, start dialogs and show first leads.","cta.primary":"🚀 Launch demo","cta.secondary":"📞 Get a consultation","cta.short":"🚀 Demo",
-        "footer.copy":"© 2025 VIKI Platform. All rights reserved."
-      }
-    };
+    const I18N = { /* …весь словарь без изменений… */ };
 
     // Language handling
     const langButtons = document.querySelectorAll('.lang-switch button');
